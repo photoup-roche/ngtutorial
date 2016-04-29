@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Hello AngularJS</title>
+    <script src="../../libs/js/angular.js"></script>
+</head>
+
+<body>
+    <h1 ng-bind="'Binding ' + message"></h1>
+    <input type="text" ng-model="message" ng-init="message = 'hello'">
+    <p ng-bind="message"></p>
+    <p ng-bind="message + message"></p>
+    <p ng-bind="::message === 'hello'"></p>
+    <p ng-bind="1 + 2"></p>
+</body>
+</html>
