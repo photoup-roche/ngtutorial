@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyApp">
 <head>
     <title>AngularJS:: Nested Controllers</title>
 </head>
 
 <body>
-    <div ng-app="MyApp">
-        <div ng-controller="FirstController">
+    <div ng-controller="FirstController">
+        <input type="text" ng-model="data.message" />
+        <p>{{ data.message + " world"}}</p>
+        <div ng-controller="SecondController">
             <input type="text" ng-model="data.message" />
             <p>{{ data.message + " world"}}</p>
-            <div ng-controller="SecondController">
+
+            <div ng-controller="ThirdController">
                 <input type="text" ng-model="data.message" />
                 <p>{{ data.message + " world"}}</p>
-
-                <div ng-controller="ThirdController">
-                    <input type="text" ng-model="data.message" />
-                    <p>{{ data.message + " world"}}</p>
-                </div>
             </div>
         </div>
     </div>

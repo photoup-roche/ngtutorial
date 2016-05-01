@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyApp">
 <head>
     <title>AngularJS:: Controller</title>
 </head>
 
 <body>
-    <div ng-app="MyApp">
-        <div ng-controller="HelloController">
-            <input type="text" ng-model="data.message" />
-            <p>{{ data.message + " world"}}</p>
-        </div>
+    <div ng-controller="HelloController">
+        <input type="text" ng-model="data.message" />
+        <p>{{ data.message + " world"}}</p>
     </div>
     <script src="../libs/js/angular.js"></script>
     <script type="text/javascript">

@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyApp">
 <head>
-    <title>AngularJS:: Controller</title>
+    <title>AngularJS:: Services</title>
 </head>
 
 <body>
-    <div ng-app="MyApp">
-        <div ng-controller="MainController">
-            <h2>Active Clients</h2>
-            <ul>
-                <li ng-repeat="client in clients">
-                    {{client.fname + ' ' + client.lname}}
-                </li>
-            </ul>
-        </div>
+    <div ng-controller="MainController">
+        <h2>Active Clients</h2>
+        <ul>
+            <li ng-repeat="client in clients">
+                {{client.fname + ' ' + client.lname}}
+            </li>
+        </ul>
     </div>
     <script src="../libs/js/angular.js"></script>
     <script src="app/services/clients.js"></script>

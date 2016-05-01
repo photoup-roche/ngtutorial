@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Scopes</title>
+    <link href="../libs/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div ng-controller="MainController">
+            <h2>Popular Searches</h2>
+            <p ng-if="data.keyword">
+                Recent searched:
+                <em class="text-info">{{data.keyword}}</em>
+                <span class="glyphicon glyphicon-remove text-danger" style="cursor: pointer;"></span>
+            </p>
+            <ul>
+                <li>AngularJS</li>
+                <li>ReactJS</li>
+                <li>Javascript Frameworks</li>
+            </ul>
+
+            <div ng-controller="SearchController">
+                <h3>Search now: </h3>
+                <form ng-submit="search()">
+                    <input type="text" ng-model="search.keyword" placeholder="Enter your keyword" />
+                    <input type="submit" value="Search" />
+                </form>
+
+                <div ng-if="search.searched">
+                    <h3>You have search for &ldquo;{{search.keyword}}&rdquo;</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius nibh tristique finibus aliquam.</p>
+                    <p>Integer condimentum sapien lorem, eu viverra diam lobortis quis. Sed sodales felis ac ex imperdiet efficitur.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../libs/js/angular.js"></script>
+    <script src="app/controllers/MainController.js"></script>
+    <script src="app/controllers/SearchController.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.controller('MainController', ['$scope', MainController])
+            .controller('SearchController', ['$scope', SearchController]);
+    </script>
+</body>
+</html>
