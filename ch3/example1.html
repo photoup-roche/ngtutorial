@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS:: Controller</title>
+</head>
+
+<body>
+    <div ng-app="MyApp">
+        <div ng-controller="MainController">
+            <h2>Active Clients</h2>
+            <ul>
+                <li ng-repeat="client in clients">
+                    {{client.fname + ' ' + client.lname}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../libs/js/angular.js"></script>
+    <script src="app/services/clients.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.factory('clients', clients);
+
+        app.controller('MainController', ['$scope', 'clients', function($scope, clients) {
+            $scope.clients = clients.list;
+        }]);
+    </script>
+</body>
+</html>
