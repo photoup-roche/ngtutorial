@@ -1,0 +1,16 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "name": "eat breakfast"
+    },
+    {
+      "id": 2,
+      "name": "wash dishes"
+    },
+    {
+      "id": 3,
+      "name": "clean the room"
+    }
+  ]
+}

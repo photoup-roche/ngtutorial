@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Services Using Live Data</title>
+    <link href="../libs/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div ng-controller="MainController" class="container">
+        <div class="row">
+            <div class="col-md-eight col-md-offset-2">
+                <h2>Example of Service Using Live Data</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Client Name</th>
+                            <th>Email Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="client in clients">
+                            <td ng-bind="client.id"></td>
+                            <td ng-bind="client.fname + ' ' + client.lname"></td>
+                            <td ng-bind="client.email"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../libs/js/angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.constant('apiUrl', 'http://localhost:3000');
+
+        app.factory('clients', ['$http', '$q', 'apiUrl', function($http, $q, apiUrl) {
+            var clients = {};
+
+            clients.list = [];
+
+            clients.getClients = function() {
+                var deferred = $q.defer();
+
+                $http.get(apiUrl + "/clients").then(function(response) {
+                    clients.list = response.data;
+
+                    deferred.resolve(clients.list);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+            };
+
+            return clients;
+        }]);
+
+        app.controller('MainController', ['$scope', 'clients', '$timeout', function($scope, clients) {
+            clients.getClients().then(function(data) {
+                $scope.clients = data;
+            }, function(error) {
+                // handle error here
+                console.log(error);
+            });
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Using filters in Controller</title>
+</head>
+<body>
+    <h3>Example of using filters in Controller</h3>
+    <div ng-controller="HelloController">
+        <p>{{ data.message }}</p>
+    </div>
+    <script src="../libs/js/angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.controller('HelloController', ['$scope', 'uppercaseFilter', HelloController]);
+
+        function HelloController($scope, uppercaseFilter) {
+            $scope.data = {
+                message: uppercaseFilter("hello world")
+            };
+        }
+    </script>
+</body>
+</html>

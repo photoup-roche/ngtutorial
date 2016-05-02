@@ -1,0 +1,28 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "fname": "John",
+      "lname": "Doe",
+      "email": "johndoe@gmail.com"
+    },
+    {
+      "id": 2,
+      "fname": "Samantha",
+      "lname": "Brown",
+      "email": "sambrown@hotmail.com"
+    },
+    {
+      "id": 3,
+      "fname": "Matt",
+      "lname": "Richards",
+      "email": "richards.m110@gmail.com"
+    },
+    {
+      "id": 4,
+      "fname": "Paul",
+      "lname": "Henry",
+      "email": "phenry123@gmail.com"
+    }
+  ]
+}
