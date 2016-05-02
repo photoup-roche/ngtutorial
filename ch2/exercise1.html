@@ -4,6 +4,11 @@
     <title>Hello AngularJS</title>
     <link href="../libs/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../libs/js/angular.js"></script>
+    <style>
+    .input-error {
+      border: 1px solid #ff0000 !important;
+    }
+    </style>
 </head>
 <body>
     <div class="container" style="margin-top: 5rem;" ng-controller="TodoController">
@@ -11,16 +16,20 @@
             <div class="col-md-8 col-md-offset-2">
                 <p>Todos: </p>
                 <ul>
-                    <li ng-repeat="todo in todos">
+                    <li ng-repeat="todo in todos track by $index">
                         <span ng-bind="todo"></span>
                         <span class="glyphicon glyphicon-remove text-danger" style="cursor: pointer;"></span>
                     </li>
                 </ul>
 
-                <form class="form-inline" ng-submit="add(newtodo)" style="margin-top: 4rem;">
+                <form class="form-inline" ng-submit="add(newtodo)" style="margin-top: 4rem;" novalidate
+                  name="myForm">
                   <div class="form-group">
                     <label for="newcolor">New todo: </label>
-                    <input type="text" id="newcolor" ng-model="newtodo" class="form-control" placeholder="New Todo" />
+                    <input type="text" id="newcolor" ng-model="newtodo" class="form-control" placeholder="New Todo"
+                      name="myTodo"
+                      required
+                        ng-class="{'input-error': myForm.myTodo.$error.required && !myForm.myTodo.$pristine}"/>
                   </div>
                   <button type="submit" class="btn btn-primary">Add</button>
                 </form>
