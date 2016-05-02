@@ -30,32 +30,13 @@
         </div>
     </div>
     <script src="../libs/js/angular.js"></script>
+    <script src="app/services/clients.js"></script>
     <script type="text/javascript">
         var app = angular.module("MyApp", []);
 
         app.constant('apiUrl', 'http://localhost:3000');
 
-        app.factory('clients', ['$http', '$q', 'apiUrl', function($http, $q, apiUrl) {
-            var clients = {};
-
-            clients.list = [];
-
-            clients.getClients = function() {
-                var deferred = $q.defer();
-
-                $http.get(apiUrl + "/clients").then(function(response) {
-                    clients.list = response.data;
-
-                    deferred.resolve(clients.list);
-                }, function(error) {
-                    deferred.reject(error);
-                });
-
-                return deferred.promise;
-            };
-
-            return clients;
-        }]);
+        app.factory('clients', ['$http', '$q', 'apiUrl', clients]);
 
         app.controller('MainController', ['$scope', 'clients', '$timeout', function($scope, clients) {
             clients.getClients().then(function(data) {
