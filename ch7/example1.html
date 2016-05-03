@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: ControllerAs</title>
+    <link href="../libs/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div ng-controller="ClientController as clientCtrl" class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2>Active Clients</h2>
+                <div class="clients-list" style="margin-top: 3rem;">
+                    <div class="row" style="margin-bottom: 1rem;">
+                        <div class="col-md-1">
+                            <strong>ID</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>First Name</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Last Name</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Email Address</strong>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>Action</strong>
+                        </div>
+                    </div>
+                    <div ng-repeat="client in clientCtrl.clients">
+                        <div class="row" ng-hide="clientCtrl.editClient && clientCtrl.editClient.id==client.id" style="margin-bottom: 1rem;">
+                            <div class="col-md-1">
+                                <span ng-bind="client.id"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="client.fname"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="client.lname"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="client.email"></span>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-default"
+                                    ng-click="clientCtrl.selectEdit(client)">Edit</a>
+                                <a class="btn btn-info">View</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 1rem;"
+                            ng-if="clientCtrl.editClient && clientCtrl.editClient.id==client.id">
+                            <form novalidate name="clientForm" ng-submit="clientCtrl.saveEdit(client, clientForm)">
+                                <div class="col-md-1">
+                                    {{clientCtrl.editClient.id}}
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="fname" ng-model="clientCtrl.editClient.fname"
+                                        required />
+                                    <p class="text-danger" ng-show="clientForm.fname.$invalid">First name is required</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="lname" ng-model="clientCtrl.editClient.lname"
+                                        required />
+                                    <p class="text-danger" ng-show="clientForm.lname.$invalid">Last name is required</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="email" name="email" ng-model="clientCtrl.editClient.email"
+                                        required />
+                                    <p class="text-danger" ng-show="clientForm.email.$error.required">Email address is required</p>
+                                    <p class="text-danger" ng-show="clientForm.email.$error.email">Must be a valid email address</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="submit" ng-disabled="clientForm.$invalid" class="btn btn-primary" value="Save" />
+                                    <a class="btn btn-danger"
+                                        ng-click="clientCtrl.cancelEdit()">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="../libs/js/angular.js"></script>
+    <script src="app/services/clients.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.constant('apiUrl', 'http://localhost:3000');
+
+        app.factory('clients', ['$http', '$q', 'apiUrl', clients]);
+
+        app.controller('ClientController', ['clients', ClientController]);
+
+        function ClientController(clients) {
+            var vm = this;
+
+            vm.selectEdit = function(client) {
+                vm.editClient = angular.copy(client);
+            };
+
+            vm.saveEdit = function(client, form) {
+                if(form.$invalid) {
+                    return false;
+                }
+
+                if(!form.$dirty) {
+                    vm.cancelEdit();
+                } else {
+                    clients.update(client, {
+                        "fname": vm.editClient.fname,
+                        "lname": vm.editClient.lname,
+                        "email": vm.editClient.email
+                    }).then(function() {
+                        vm.cancelEdit();
+                    });
+                }
+            };
+
+            vm.cancelEdit = function() {
+                vm.editClient = false;
+            };
+
+            var init = function() {
+                clients.getClients().then(function(data) {
+                    vm.clients = data;
+                }, function(error) {
+                    // handle error here
+                    console.log(error);
+                });
+            };
+
+            init();
+        }
+    </script>
+</body>
+</html>

@@ -2,27 +2,51 @@
   "clients": [
     {
       "id": 1,
-      "fname": "John",
-      "lname": "Doe",
-      "email": "johndoe@gmail.com"
+      "fname": "Gary",
+      "lname": "Hughes",
+      "email": "ghughes0@tinyurl.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/markretzloff/128.jpg",
+      "address": "12 Claremont Court"
     },
     {
       "id": 2,
-      "fname": "Samantha",
-      "lname": "Brown",
-      "email": "sambrown@hotmail.com"
+      "fname": "Kenny",
+      "lname": "Hernandez",
+      "email": "khernandez1@businessinsider.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/madebybrenton/128.jpg",
+      "address": "43 Sullivan Terrace"
     },
     {
       "id": 3,
-      "fname": "Matt",
-      "lname": "Richards",
-      "email": "richards.m110@gmail.com"
+      "fname": "Sandra",
+      "lname": "Chavez",
+      "email": "schavez2@spiegel.de",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/smaczny/128.jpg",
+      "address": "9 Roth Parkway"
     },
     {
       "id": 4,
-      "fname": "Paul",
-      "lname": "Henry",
-      "email": "phenry123@gmail.com"
+      "fname": "Norma",
+      "lname": "Alexander",
+      "email": "nalexander3@chronoengine.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/smenov/128.jpg",
+      "address": "4182 Acker Point"
+    },
+    {
+      "id": 5,
+      "fname": "Andrew",
+      "lname": "Montgomery",
+      "email": "amontgomery4@squidoo.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/gregkilian/128.jpg",
+      "address": "044 Scofield Court"
+    },
+    {
+      "id": 6,
+      "fname": "Heather",
+      "lname": "Meyer",
+      "email": "hmeyer5@businesswire.com",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/raquelwilson/128.jpg",
+      "address": "913 Melrose Plaza"
     }
   ]
 }
