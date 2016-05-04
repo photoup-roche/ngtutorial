@@ -1,0 +1,35 @@
+<div class="row">
+    <h2 class="pull-left">General Information</h2>
+    <a href="#/" class="btn btn-default pull-left" style="margin: 2rem 0 0 2rem;">Back</a>
+</div>
+<div class="client-info" style="margin-top: 3rem;">
+    <div class="row">
+        <div class="col-md-3">
+            <img ng-src="{{detailCtrl.detail.avatar}}" class="img-thumbnail" />
+        </div>
+        <div class="col-md-9">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <td ng-bind="detailCtrl.detail.id"></td>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <td ng-bind="detailCtrl.detail.fname"></td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td ng-bind="detailCtrl.detail.lname"></td>
+                </tr>
+                <tr>
+                    <th>Email Address</th>
+                    <td ng-bind="detailCtrl.detail.email"></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td ng-bind="detailCtrl.detail.address"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
