@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Custom Directive</title>
+</head>
+<body>
+    <div>
+        <h3>Custom Directive Zoom and Fade</h3>
+        <img src="images/nature.jpg" zoomit />
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../libs/js/angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.directive('zoomit', function() {
+            return {
+                link: function(scope, element, attrs) {
+                    var dragging = false;
+                    var lastX = 0;
+
+                    element.on('mousedown', function(event) {
+                        lastX = event.pageX;
+                        event.preventDefault();
+                        dragging = true;
+                    });
+
+                    element.on('mouseup', function() {
+                        dragging = false;
+                    });
+
+                    element.on('mouseleave', function() {
+                        dragging = false;
+                    });
+
+                    element.on('mousemove', function(event) {
+                        if(dragging) {
+                            var adjustment = null;
+
+                            if(event.pageX > lastX && element.width() < 300) {
+                                adjustment = 1.03;
+                            } else if(element.width() > 100) {
+                                adjustment = 0.98;
+                            }
+
+                            if(adjustment) {
+                                element.width(element.width() * adjustment);
+                                element.height(element.height() * adjustment);
+                            }
+                            lastX = event.pageX;
+                        }
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -17,12 +17,10 @@
       "address": "43 Sullivan Terrace"
     },
     {
-      "id": 3,
-      "fname": "Sandra",
+      "fname": "Sam",
       "lname": "Chavez",
       "email": "schavez2@spiegel.de",
-      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/smaczny/128.jpg",
-      "address": "9 Roth Parkway"
+      "id": 3
     },
     {
       "id": 4,

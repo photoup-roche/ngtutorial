@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Custom Directive</title>
+    <style>
+        .titleBar {
+            color: white;
+            background-color: blue;
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .footer {
+            color: white;
+            background-color: blue;
+            font-size: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="MyController">
+        <h3>Custom Directive Manipulating the DOM</h3>
+
+        <mybox title="Simple Text" bwidth="100px">
+            Using AngularJS to build a simple box around elements.
+        </mybox>
+        <mybox title="Paragraph" bwidth="200px">
+            <p>Using AngularJS to build a simple box around a paragraph</p>
+        </mybox>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../libs/js/angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.controller('MyController', ['$scope', HelloController]);
+
+        function HelloController($scope) {
+            $scope.data = {
+                title: "My Application"
+            };
+        }
+
+        app.directive('mybox', function() {
+            return {
+                transclude: true,
+                restrict: 'E',
+                scope: {title: '@', bwidth: '@bwidth'},
+                template: '<div><span class="titleBar">{{title}}' +
+                    '</span><div ng-transclude></div></div>',
+                link: function(scope, element, attrs) {
+                    element.append('<span class="footer">'+ scope.$parent.data.title +'</span>');
+                    element.css('border', '2px ridge black');
+                    element.css('display', 'inline-block');
+                    element.css('width', scope.bwidth);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
