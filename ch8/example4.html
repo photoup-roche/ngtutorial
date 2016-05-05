@@ -13,10 +13,10 @@
             </div>
 
             <div class="col-md-6">
-                <img src="images/nature.jpg" zoomit fadeit />
+                <img src="images/nature.jpg" zoomit fadeit="{{1==true}}" />
             </div>
         </div>
-        
+
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
@@ -69,12 +69,12 @@
         app.directive('fadeit', function() {
             return {
                 link: function(scope, element, attrs) {
-                    var dragging = false; 
+                    var dragging = false;
                     var lastY = 0;
 
                     element.on('mousedown', function(event) {
                         lastY = event.pageY;
-                        event.preventDefault(); 
+                        event.preventDefault();
                         dragging = true;
                     });
 
@@ -88,7 +88,7 @@
 
                     element.on('mousemove', function(event) {
                         if(dragging) {
-                            var adjustment = null; 
+                            var adjustment = null;
                             var currentOpacity = parseFloat(element.css("opacity"));
                             if(event.pageY > lastY && currentOpacity < 1) {
                                 adjustment = 1.1;

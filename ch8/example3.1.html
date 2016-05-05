@@ -23,12 +23,14 @@
     <div ng-controller="MyController">
         <h3>Custom Directive Manipulating the DOM</h3>
 
-        <mybox title="Simple Text" bwidth="100px" on-click="clickMe()" ctr-title="data.title">
+        <input type="text" mybox flag="data.flag" />
+        <a href="#" ng-click="data.flag=true">Edit</a>
+        <!--<mybox title="Simple Text" bwidth="100px" on-click="clickMe()" ctr-title="data.title" flag="data.flag">
             Using AngularJS to build a simple box around elements.
         </mybox>
         <mybox title="Paragraph" bwidth="200px">
             <p>Using AngularJS to build a simple box around a paragraph</p>
-        </mybox>
+        </mybox> -->
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
@@ -40,49 +42,60 @@
 
         function HelloController($scope) {
             $scope.data = {
-                title: "My Application"
+                title: "My Application",
+                flag: false
             };
 
             $scope.clickMe = function() {
               $scope.data.title = "A New Application Title";
+
+              $scope.data.flag = !$scope.data.flag;
             };
         }
 
-        app.directive('mybox',function() {
+        app.directive('mybox',function($compile) {
             return {
                 transclude: true,
-                restrict: 'E',
+                restrict: 'A',
                 scope: {
                     title: '@',
                     bwidth: '@bwidth',
                     ctrTitle: '=ctrTitle',
-                    onClick: '&onClick'
+                    onClick: '&onClick',
+                    flag: '='
                 },
-                template: '<div><span class="titleBar">{{box.title}}' +
+                /*template: '<div><span class="titleBar">{{box.title}} - {{box.flag}}' +
                     '</span><div class="my-original-content" ng-transclude></div></div>' +
-                    '<span class="footer">{{ box.ctrTitle }}</span>',
+                    '<span class="footer">{{ box.ctrTitle }}</span>',*/
                 link: function(scope, element, attrs) {
-                    element.css('border', '2px ridge black');
-                    element.css('display', 'inline-block');
-                    element.css('width', scope.box.bwidth);
+                    // element.css('border', '2px ridge black');
+                    // element.css('display', 'inline-block');
+                    // element.css('width', scope.box.bwidth);
 
                     element.bind("click", function() {
                       //scope.changeTitle();
-                      console.log("clicked", scope.box)
+                      //console.log("clicked", scope.box)
                       scope.$apply(function() {
                         scope.box.onClick();
                       })
                     });
 
-                    // to unbind event listeners
-                    element.on("$destroy", function() {
-                      element.unbind("click");
+                    // example - input focus
+                    var focusMe = function() {
+                      element.focus();
+                    };
+
+                    scope.$watch(function() {
+                      return scope.box.flag;
+                    }, function(new_value, old_value) {
+                      console.log(new_value, old_value);
+                      if(new_value) {
+                        focusMe();
+                      }
                     })
                 },
                 controller: ['$scope', function($scope) {
                   var vm = this;
-
-                  };
                 }],
                 controllerAs: "box",
                 bindToController: true

@@ -12,14 +12,22 @@
 
         app.directive("welcome", function() {
             return {
-                restrict: "A",
-                template: '<div>Howdy there! You look splendid.</div>'
+                restrict: "E",
+                template: '<div>Howdy there! You look splendid.</div>',
+                link: function(scope, element, attrs) {
+                  console.log(scope);
+                  console.log(element);
+
+                  element.bind("click", function() {
+                    element.html("You look splendid!");
+                  });
+                }
             };
         });
 
         app.directive("goodbye", function() {
             return {
-                restrict: "E",
+                restrict: "A",
                 link: function() {
                     alert("Goodbye!!");
                 }
