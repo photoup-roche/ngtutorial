@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Directives</title>
+    <script src="../libs/js/angular.js"></script>
+</head>
+<body>
+    <h3>Custom Directive Example</h3>
+    <test-welcome>
+        <p>test</p>
+    </test-welcome>
+    <p test-welcome></p>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.directive("testWelcome", function() {
+            return {
+                restrict: "AE",
+                template: '<div>Howdy there! You look splendid.</div>'
+            };
+        });
+    </script>
+</body>
+</html>

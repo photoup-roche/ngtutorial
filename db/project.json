@@ -1,0 +1,94 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Personal"
+    },
+    {
+      "id": 2,
+      "name": "Office"
+    },
+    {
+      "id": 3,
+      "name": "Others"
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "name": "eat breakfast",
+      "projectId": 1,
+      "completed": true
+    },
+    {
+      "id": 2,
+      "name": "wash dishes",
+      "projectId": 1,
+      "completed": false
+    },
+    {
+      "id": 3,
+      "name": "clean the room",
+      "projectId": 1,
+      "completed": false
+    },
+    {
+      "id": 4,
+      "name": "Check Email",
+      "projectId": 2,
+      "completed": true
+    },
+    {
+      "id": 5,
+      "name": "Scrum Meeting",
+      "projectId": 2,
+      "completed": true
+    },
+    {
+      "id": 6,
+      "name": "Sprint Review",
+      "projectId": 2,
+      "completed": false
+    },
+    {
+      "id": 7,
+      "name": "Retrospective Meeting",
+      "projectId": 2,
+      "completed": false
+    },
+    {
+      "id": 8,
+      "name": "Read News",
+      "projectId": 3,
+      "completed": false
+    },
+    {
+      "id": 9,
+      "name": "Attend Dev Conference",
+      "projectId": 3,
+      "completed": false
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "content": "Test Comment",
+      "todoId": 1
+    },
+    {
+      "id": 2,
+      "content": "Another Test Comment",
+      "todoId": 1
+    },
+    {
+      "id": 3,
+      "content": "Need to check the email from John Doe",
+      "todoId": 4
+    },
+    {
+      "id": 4,
+      "content": "Fix bug from John Doe's another email",
+      "todoId": 4
+    }
+  ]
+}

@@ -23,6 +23,7 @@ function clients($http, $q, apiUrl) {
 
     clients.update = function(client, data) {
         var deferred = $q.defer();
+        var data = angular.extend(angular.copy(client), data);
 
         $http.put(apiUrl + "/clients/" + client.id, data).then(function(response) {
             angular.extend(client, data);

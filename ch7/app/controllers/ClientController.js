@@ -1,6 +1,7 @@
-function ClientController(clients, clientList) {
+function ClientController(clientList, clients) {
     var vm = this;
-
+    console.log("in client controller")
+    console.log(clientList)
     vm.selectEdit = function(client) {
         vm.editClient = angular.copy(client);
     };

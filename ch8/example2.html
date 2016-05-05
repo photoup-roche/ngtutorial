@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Directives</title>
+    <script src="../libs/js/angular.js"></script>
+</head>
+<body>
+    <h3>Custom Directive Example</h3>
+    <welcome goodbye></welcome>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.directive("welcome", function() {
+            return {
+                restrict: "E",
+                template: '<div>Howdy there! You look splendid.</div>',
+                link: function(scope, element, attrs) {
+                  console.log(scope);
+                  console.log(element);
+
+                  element.bind("click", function() {
+                    element.html("You look splendid!");
+                  });
+                }
+            };
+        });
+
+        app.directive("goodbye", function() {
+            return {
+                restrict: "A",
+                link: function() {
+                    alert("Goodbye!!");
+                }
+            };
+        });
+    </script>
+</body>
+</html>

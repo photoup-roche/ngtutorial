@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>AngularJS:: Custom Directive</title>
+    <style>
+        .titleBar {
+            color: white;
+            background-color: blue;
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .footer {
+            color: white;
+            background-color: blue;
+            font-size: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="MyController">
+        <h3>Custom Directive Manipulating the DOM</h3>
+
+        <mybox title="Simple Text" bwidth="100px" on-click="clickMe()" ctr-title="data.title">
+            Using AngularJS to build a simple box around elements.
+        </mybox>
+        <mybox title="Paragraph" bwidth="200px">
+            <p>Using AngularJS to build a simple box around a paragraph</p>
+        </mybox>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../libs/js/angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("MyApp", []);
+
+        app.controller('MyController', ['$scope', HelloController]);
+
+        function HelloController($scope) {
+            $scope.data = {
+                title: "My Application"
+            };
+
+            $scope.clickMe = function() {
+              $scope.data.title = "A New Application Title";
+            };
+        }
+
+        app.directive('mybox',function() {
+            return {
+                transclude: true,
+                restrict: 'E',
+                scope: {
+                    title: '@',
+                    bwidth: '@bwidth',
+                    ctrTitle: '=ctrTitle',
+                    onClick: '&onClick'
+                },
+                template: '<div><span class="titleBar">{{box.title}}' +
+                    '</span><div class="my-original-content" ng-transclude></div></div>' +
+                    '<span class="footer">{{ box.ctrTitle }}</span>',
+                link: function(scope, element, attrs) {
+                    element.css('border', '2px ridge black');
+                    element.css('display', 'inline-block');
+                    element.css('width', scope.box.bwidth);
+
+                    element.bind("click", function() {
+                      //scope.changeTitle();
+                      console.log("clicked", scope.box)
+                      scope.$apply(function() {
+                        scope.box.onClick();
+                      })
+                    });
+
+                    // to unbind event listeners
+                    element.on("$destroy", function() {
+                      element.unbind("click");
+                    })
+                },
+                controller: ['$scope', function($scope) {
+                  var vm = this;
+
+                  };
+                }],
+                controllerAs: "box",
+                bindToController: true
+            }
+        })
+    </script>
+</body>
+</html>

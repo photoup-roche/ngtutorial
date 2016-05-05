@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS:: ControllerAs</title>
+    <link href="../libs/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="page-header" style="margin-bottom: 2rem;">
+                  <h1>My Todos App</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="nav nav-pills nav-stacked" style="margin-top: 2rem;">
+                            <li class="active"><a href="#">All Projects</a></li>
+                            <li><a href="#">Personal</a></li>
+                            <li><a href="#">Office</a></li>
+                            <li><a href="#">Wish List</a></li>
+                            <li><a href="#">Others</a></li>
+                        </ul>
+
+                        <div style="margin-top: 3rem;">
+                            <form>
+                                <div class="form-group col-md-12">
+                                    <h4>New Project</h4>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" id="project_name" placeholder="Project Name">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="col-md-12 btn btn-primary">Add</button>
+                                </div>      
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row active-items">
+                            <h3>Active Items</h3>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="col-md-12">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Todo name" value="Eat Breakfast">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <a class="btn btn-danger">Cancel</a>
+                                        </form>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-md-12">
+                                        <input type="checkbox"> 
+                                        <span><a href="#">Wash Dishes</a></span>
+                                        <span style="margin-left: 1rem;" class="glyphicon glyphicon-remove pull-right text-danger"></span>
+                                        <span class="glyphicon glyphicon-move pull-right text-info"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-md-12">
+                                        <input type="checkbox"> 
+                                        <span><a href="#">Go to work</a></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        
+                        <div class="row completed-items">
+                            <h3>Completed Items</h3>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="col-md-12">
+                                        <input type="checkbox" checked disabled> 
+                                        <s><a href="#">Wash Dishes</a></s>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-md-12">
+                                        <input type="checkbox" checked disabled> 
+                                        <s><a href="#">Go to work</a></s>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

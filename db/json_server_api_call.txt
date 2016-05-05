@@ -1,0 +1,19 @@
+Get all todos:
+URL: http://localhost:3000/todos
+VERB/METHOD: GET
+
+Get all todo item:
+URL: http://localhost:3000/todos/<todo_id>
+VERB/METHOD: GET
+
+Add todo:
+URL: http://localhost:3000/todos
+VERB/METHOD: POST
+
+Update todo:
+URL: http://localhost:3000/todos/<todo_id>
+VERB/METHOD: PUT
+
+Delete todo:
+URL: http://localhost:3000/todos/<todo_id>
+VERB/METHOD: DELETE
