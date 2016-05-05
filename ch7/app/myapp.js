@@ -2,7 +2,7 @@ var app = angular.module("MyApp", ['ngRoute']);
 
 app.constant('apiUrl', 'http://localhost:3000');
 
-app.constant('appUrl', 'http://localhost/ngtutorial/ch7');
+app.constant('appUrl', 'http://localhost/ngtutorial_git2/ch7/');
 
 app.config(['$routeProvider', 'appUrl', routeInit])
 
@@ -16,24 +16,21 @@ app.controller('MainController', ['$rootScope', '$location', function($rootScope
     })
 }]);
 
-app.controller('ClientController', ['clients', ClientController]);
-
-app.controller('ClientDetailController', ['client', ClientController]);
-
 function routeInit($routeProvider, appUrl) {
     $routeProvider
         .when('/', {
-            templateUrl: appUrl + '/app/views/client-list.html',
-            controller: ['clients', 'clientList', ClientController],
-            controllerAs: 'clientCtrl',
             resolve: {
                 clientList: ['clients', function(clients) {
                     return clients.getClients();
                 }]
-            }
+            },
+            templateUrl: appUrl + '/app/views/client-list.html',
+            controller: ['clientList', 'clients', ClientController],
+            controllerAs: 'clientCtrl'
         })
         .when('/404', {
-            template: '<h2>Sorry, Page Not Found!</h2>'
+            //template: '<h2>Sorry, Page Not Found!</h2>'
+            templateUrl: appUrl + '/app/views/404.html'
         })
         .when('/client/:clientId', {
             templateUrl: appUrl + '/app/views/client-detail.html',

@@ -2,11 +2,21 @@
 <html ng-app="MyApp">
 <head>
     <title>AngularJS:: Custom Directive</title>
+    <link href="../libs/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        <h3>Custom Directive Zoom and Fade</h3>
-        <img src="images/nature.jpg" zoomit />
+    <div class="container" style="margin-top: 5rem;">
+        <h3 style="margin-bottom: 5rem;">Custom Directive Zoom and Fade</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="images/nature.jpg" zoomit />
+            </div>
+
+            <div class="col-md-6">
+                <img src="images/nature.jpg" zoomit fadeit />
+            </div>
+        </div>
+        
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
@@ -54,6 +64,48 @@
                 }
             }
         })
+
+
+        app.directive('fadeit', function() {
+            return {
+                link: function(scope, element, attrs) {
+                    var dragging = false; 
+                    var lastY = 0;
+
+                    element.on('mousedown', function(event) {
+                        lastY = event.pageY;
+                        event.preventDefault(); 
+                        dragging = true;
+                    });
+
+                    element.on('mouseup', function(event) {
+                        dragging = false;
+                    });
+
+                    element.on('mouseleave', function(event) {
+                        dragging = false;
+                    });
+
+                    element.on('mousemove', function(event) {
+                        if(dragging) {
+                            var adjustment = null; 
+                            var currentOpacity = parseFloat(element.css("opacity"));
+                            if(event.pageY > lastY && currentOpacity < 1) {
+                                adjustment = 1.1;
+                            } else if(currentOpacity > 0.5) {
+                                adjustment = 0.9;
+                            }
+
+                            if(adjustment) {
+                                element.css("opacity", currentOpacity*adjustment);
+                            }
+
+                            lastY = event.pageY;
+                        }
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>
